@@ -22,7 +22,7 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
       </thead>
       <tbody>
         {dependencies.map((dep, i) => (
-          <tr>
+          <tr key={i}>
             <th scope="row">{i}</th>
             <td>{dep.name}</td>
             <td>{dep.version}</td>

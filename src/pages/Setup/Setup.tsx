@@ -19,24 +19,3 @@ const Setup = () => {
 };
 
 export default Setup;
-
-/**
- * {
- *           // Remove own package
- *           delete packageFile.packages[''];
- *
- *           // Send packages with their name to parent
- *           packageFile(
- *             (Object.entries(packageFile.packages) as [string, any]).reduce(
- *               (acc, [key, value]) => [
- *                 ...acc,
- *                 {
- *                   ...value,
- *                   name: key.replace('node_modules/', ''),
- *                 },
- *               ],
- *               [],
- *             ),
- *           );
- *         }
- */

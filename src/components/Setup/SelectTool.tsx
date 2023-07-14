@@ -27,8 +27,8 @@ const SelectPackageLock = () => {
     <div className="select-tool">
       <p>Select the tool</p>
       <div className="select-tool__btns d-flex gap-3">
-        {buttons.map((btn) => (
-          <LargeBtn label={btn.label} icon={btn.icon} path={btn.path} isDisabled={btn.isDisabled as boolean} />
+        {buttons.map((btn, i) => (
+          <LargeBtn key={i} label={btn.label} icon={btn.icon} path={btn.path} isDisabled={btn.isDisabled as boolean} />
         ))}
       </div>
     </div>

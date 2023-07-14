@@ -1,7 +1,7 @@
 import { RouteObject } from 'react-router-dom';
 import Root from '@/pages/Layout/Root';
 import ErrorBoundary from '@/pages/Layout/ErrorBoundary';
-import ReactUpdate from '@/pages/Update/ReactUpdate';
+import UpgradeReact from '@/pages/Update/UpgradeReact';
 import DependencyUpdate from '@/pages/Update/DependencyUpdate';
 import Setup from '@/pages/Setup/Setup';
 
@@ -17,7 +17,7 @@ const routes: RouteObject[] = [
       },
       {
         path: 'upgrade-react',
-        element: <ReactUpdate />,
+        element: <UpgradeReact />,
       },
       {
         path: 'upgrade-dependency',
