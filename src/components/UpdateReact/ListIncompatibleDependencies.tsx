@@ -7,7 +7,7 @@ interface Props {
 
 const ListIncompatibleDependencies = ({ dependencies }: Props) => {
   if (!dependencies.length) {
-    return <p>Toutes les dépendances sont compatibles</p>;
+    return <p>All dependencies are compatible</p>;
   }
 
   return (
@@ -15,9 +15,9 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
       <thead>
         <tr>
           <th>#</th>
-          <th>Dépendance</th>
+          <th>Dependency/Plugin</th>
           <th>Version</th>
-          <th>Exigence React</th>
+          <th>React requirement</th>
         </tr>
       </thead>
       <tbody>
