@@ -12,7 +12,7 @@ const buttons: ILargeBtn[] = [
   {
     label: 'Upgrade Dependency',
     icon: faDiagramPredecessor,
-    path: 'upgrade-dependency',
+    path: 'upgrade-plugin',
   },
   {
     label: 'What is deprecated?',

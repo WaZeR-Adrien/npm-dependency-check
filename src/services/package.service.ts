@@ -5,12 +5,12 @@ const getReactRequirement = async (name: string, version: string) => {
   return manifest.peerDependencies?.react;
 };
 
-const getReactVersions = async () => {
-  const manifest = await getPackument({ name: 'react' });
+const getPackageVersions = async (name: string) => {
+  const manifest = await getPackument({ name });
   return Object.keys(manifest.versions);
 };
 
 export default {
   getReactRequirement,
-  getReactVersions,
+  getPackageVersions,
 };

@@ -11,12 +11,12 @@ const UpgradeReact = () => {
   const [reactVersionSelected, setReactVersionSelected] = useState<PropsValue<any>>(null);
 
   const incompatibleDependencies = useSelector(
-    packageLockSelectors.selectIncompatibleDependencies(reactVersionSelected ? reactVersionSelected.value : ''),
+    packageLockSelectors.selectIncompatibleReactPlugins(reactVersionSelected ? reactVersionSelected.value : ''),
   );
 
   useEffect(() => {
     packageService
-      .getReactVersions()
+      .getPackageVersions('react')
       .then((versions) =>
         versions
           .map((v) => coerce(v).toString())
