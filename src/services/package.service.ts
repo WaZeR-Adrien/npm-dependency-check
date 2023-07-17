@@ -1,16 +1,15 @@
 import { getPackageManifest, getPackument } from 'query-registry';
 
-const getReactRequirement = async (name: string, version: string) => {
-  const manifest = await getPackageManifest({ name, version });
-  return manifest.peerDependencies?.react;
+const getPackageDetail = (name: string, version: string) => {
+  return getPackageManifest({ name, version });
 };
 
 const getPackageVersions = async (name: string) => {
   const manifest = await getPackument({ name });
-  return Object.keys(manifest.versions);
+  return Object.values(manifest.versions);
 };
 
 export default {
-  getReactRequirement,
+  getPackageDetail,
   getPackageVersions,
 };

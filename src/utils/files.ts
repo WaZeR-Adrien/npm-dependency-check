@@ -17,5 +17,5 @@ export const readJsonFile = (file: Blob): Promise<any> =>
     fileReader.onerror = (error) => reject(error);
   });
 
-export const isPackageFile = (file): file is PackageJSON =>
+export const isPackageFile = (file: any): file is PackageJSON =>
   'name' in file && 'version' in file && 'packages' in file && 'lockfileVersion' in file;

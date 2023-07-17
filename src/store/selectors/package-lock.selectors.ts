@@ -1,12 +1,12 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { PackageJSON } from 'query-registry';
-import { coerce, satisfies } from 'semver';
 import { PackageLockState } from '@/store/slices/package-lock.slice';
+import { isCompatibleWithReactVersion } from '@/utils/packages.ts';
 
-const selectFile = ({ packageLock }: RootState) => packageLock;
+const selectFile = ({ packageLock }: RootState): PackageLockState => packageLock as any;
 
-const selectDependencies = createSelector(selectFile, (packageLock: PackageLockState): PackageJSON[] =>
+const selectDependencies = createSelector(selectFile, (packageLock): PackageJSON[] =>
   (Object.entries(packageLock.packages) as [string, any])
     .filter(([key]) => !!key)
     .reduce(
@@ -21,24 +21,30 @@ const selectDependencies = createSelector(selectFile, (packageLock: PackageLockS
     ),
 );
 
-const selectOnlyReactPlugins = createSelector(selectDependencies, (dependencies: PackageJSON[]): PackageJSON[] =>
+const selectOnlyReactPlugins = createSelector(selectDependencies, (dependencies): PackageJSON[] =>
   dependencies.filter((dep) => dep.peerDependencies && dep.peerDependencies.react),
 );
 
-const selectReactPluginNames = createSelector(selectOnlyReactPlugins, (plugins: PackageJSON[]): string[] =>
+const selectReactPluginNames = createSelector(selectOnlyReactPlugins, (plugins): string[] =>
   plugins.map((dep) => dep.name),
 );
 
-const selectIncompatibleReactPlugins = (reactVersionSelected: string) =>
-  createSelector(selectOnlyReactPlugins, (plugins: PackageJSON[]): PackageJSON[] => {
-    return plugins.filter(({ peerDependencies }) => {
-      const reactRange = peerDependencies.react;
-      return !satisfies(coerce(reactVersionSelected) || '', reactRange);
-    });
-  });
+const selectReactVersionSelectedArg = (_: any, reactVersionSelected: string) => reactVersionSelected;
+
+const selectIncompatibleReactPlugins = createSelector(
+  [selectOnlyReactPlugins, selectReactVersionSelectedArg],
+  (plugins, reactVersionSelected): PackageJSON[] =>
+    plugins.filter((plugin) => !isCompatibleWithReactVersion(plugin, reactVersionSelected)),
+);
+
+const selectReactVersion = createSelector(selectDependencies, (dependencies) => {
+  const react = dependencies.find((dep) => dep.name === 'react');
+  return react?.version;
+});
 
 export default {
   selectFile,
   selectReactPluginNames,
   selectIncompatibleReactPlugins,
+  selectReactVersion,
 };

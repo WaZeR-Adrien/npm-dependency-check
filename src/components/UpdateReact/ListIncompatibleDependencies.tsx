@@ -26,7 +26,7 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
             <th scope="row">{i}</th>
             <td>{dep.name}</td>
             <td>{dep.version}</td>
-            <td>{dep.peerDependencies.react}</td>
+            <td>{dep.peerDependencies?.react}</td>
           </tr>
         ))}
       </tbody>

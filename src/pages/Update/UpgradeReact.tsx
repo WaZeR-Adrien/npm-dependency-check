@@ -1,31 +1,17 @@
-import { useEffect, useState } from 'react';
-import Select, { PropsValue } from 'react-select';
-import { coerce, compareBuild } from 'semver';
-import packageService from '@/services/package.service';
+import { useState } from 'react';
+import { PropsValue } from 'react-select';
+import AsyncSelect from 'react-select/async';
 import ListIncompatibleDependencies from '@/components/UpdateReact/ListIncompatibleDependencies';
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
+import { getVersionOptionsFromPackage } from '@/utils/packages.ts';
 
 const UpgradeReact = () => {
-  const [reactVersions, setReactVersions] = useState<PropsValue<any>>([]);
-  const [reactVersionSelected, setReactVersionSelected] = useState<PropsValue<any>>(null);
+  const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
-  const incompatibleDependencies = useSelector(
-    packageLockSelectors.selectIncompatibleReactPlugins(reactVersionSelected ? reactVersionSelected.value : ''),
+  const incompatibleDependencies = useSelector((state) =>
+    packageLockSelectors.selectIncompatibleReactPlugins(state, versionSelected ? versionSelected.value : ''),
   );
-
-  useEffect(() => {
-    packageService
-      .getPackageVersions('react')
-      .then((versions) =>
-        versions
-          .map((v) => coerce(v).toString())
-          .filter((v, i, all) => all.indexOf(v) === i)
-          .sort((a, b) => compareBuild(b, a))
-          .map((v) => ({ label: v, value: v })),
-      )
-      .then(setReactVersions);
-  }, []);
 
   return (
     <div className="react-update">
@@ -33,16 +19,17 @@ const UpgradeReact = () => {
         <span className="fw-light">Upgrade</span> <span className="text-primary">React</span>
       </h2>
 
-      <Select
-        options={reactVersions}
-        value={reactVersionSelected}
+      <AsyncSelect
         placeholder="Select the targeted React version"
+        loadOptions={() => getVersionOptionsFromPackage('react')}
         isClearable
         isSearchable
-        onChange={(option: PropsValue<any>) => setReactVersionSelected(option)}
+        cacheOptions
+        defaultOptions
+        onChange={setVersionSelected}
       />
 
-      {reactVersionSelected !== null && <ListIncompatibleDependencies dependencies={incompatibleDependencies} />}
+      {versionSelected !== null && <ListIncompatibleDependencies dependencies={incompatibleDependencies} />}
     </div>
   );
 };
