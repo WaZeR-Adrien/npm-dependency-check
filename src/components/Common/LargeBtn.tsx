@@ -1,7 +1,7 @@
-import { ILargeBtn } from '@/types/large-btn';
+import { ILargeBtn } from '@/types/large-btn.ts';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useCallback } from 'react';
+import IonIcon from '@reacticons/ionicons';
 
 type Props = ILargeBtn;
 
@@ -15,10 +15,10 @@ const LargeBtn = ({ label, icon, path, isDisabled }: Props) => {
 
   return (
     <div className={`large-btn ${isDisabled ? 'large-btn--disabled' : ''}`} role="button" onClick={handleNavigate}>
-      <FontAwesomeIcon
+      <IonIcon
         className={`large-btn__icon ${isDisabled ? 'text-secondary' : 'text-primary'}`}
-        icon={icon}
-        size="3x"
+        name={icon as any}
+        size="large"
       />
       <p className="large-btn__title h5">{label}</p>
     </div>

@@ -10,7 +10,12 @@
   border: 5px solid rgba($primary, 0.45);
   transition: all 0.4s;
 
-  &:hover {
+  &--error {
+    background: rgba($danger, 0.5);
+    animation: 0.15s shaking 0s 2;
+  }
+
+  &:not(&--error):hover {
     background: rgba($primary, 0.05);
     transition: all 0.4s;
   }
@@ -22,6 +27,10 @@
       background: rgba($secondary, 0.05);
       cursor: not-allowed;
     }
+  }
+
+  &__icon {
+    font-size: 1.5em;
   }
 
   &__title {

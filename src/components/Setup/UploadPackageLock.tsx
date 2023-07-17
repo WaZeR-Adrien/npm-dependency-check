@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { isPackageFile, readJsonFile } from '@/utils/files';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
+import IonIcon from '@reacticons/ionicons';
 
 interface Props {
   setPackageFile: (file: any) => void;
@@ -10,13 +9,24 @@ interface Props {
 const UploadPackageLock = ({ setPackageFile }: Props) => {
   const [filename, setFilename] = useState('');
   const [isError, setError] = useState(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    const { current } = inputRef;
+    if (current) {
+      current.click();
+    }
+  };
 
   const handleChange = async ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     if (target.files && target.files.length) {
       setError(false);
 
       const file = target.files.item(0);
+      if (!file) {
+        return setError(true);
+      }
+
       setFilename(file.name);
 
       try {
@@ -33,21 +43,12 @@ const UploadPackageLock = ({ setPackageFile }: Props) => {
   };
 
   return (
-    <div
-      className={`upload-package-lock ${isError ? 'upload-package-lock--error' : ''}`}
-      role="button"
-      onClick={() => inputRef.current.click()}>
-      <FontAwesomeIcon className="upload-package-lock__icon text-primary" icon={faCloudArrowUp} size="4x" />
-      <p className="upload-package-lock__title h4">Import</p>
-      {filename && <p className="upload-package-lock__name fst-italic">{filename}</p>}
+    <div className={`large-btn m-auto ${isError ? 'large-btn--error' : ''}`} role="button" onClick={handleClick}>
+      <IonIcon className="large-btn__icon text-primary" name="cloud-upload-outline" size="large" />
+      <p className="large-btn__title h4">Import</p>
+      {filename && <p className="large-btn__subtitle fst-italic mb-0">{filename}</p>}
 
-      <input
-        ref={inputRef}
-        className="upload-package-lock__input"
-        type="file"
-        accept=".json,application/json"
-        onChange={handleChange}
-      />
+      <input ref={inputRef} className="d-none" type="file" accept=".json,application/json" onChange={handleChange} />
     </div>
   );
 };

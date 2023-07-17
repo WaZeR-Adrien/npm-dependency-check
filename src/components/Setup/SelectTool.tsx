@@ -1,22 +1,20 @@
-import LargeBtn from '@/components/Common/LargeBtn/LargeBtn';
+import LargeBtn from '@/components/Common/LargeBtn.tsx';
 import { ILargeBtn } from '@/types/large-btn';
-import { faReact } from '@fortawesome/free-brands-svg-icons';
-import { faBan, faDiagramPredecessor } from '@fortawesome/free-solid-svg-icons';
 
 const buttons: ILargeBtn[] = [
   {
     label: 'Upgrade React',
-    icon: faReact,
+    icon: 'logo-react',
     path: 'upgrade-react',
   },
   {
     label: 'Upgrade Dependency',
-    icon: faDiagramPredecessor,
+    icon: 'layers-outline',
     path: 'upgrade-plugin',
   },
   {
     label: 'What is deprecated?',
-    icon: faBan,
+    icon: 'ban-outline',
     path: 'what-is-deprecated',
     isDisabled: true,
   },
