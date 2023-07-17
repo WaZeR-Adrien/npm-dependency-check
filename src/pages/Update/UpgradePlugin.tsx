@@ -28,7 +28,7 @@ const UpgradePlugin = () => {
       </h2>
 
       <Select
-        className="upgrade-plugin__select"
+        className="upgrade-plugin__select mb-3"
         placeholder="Select the targeted plugin"
         options={pluginOptions}
         isClearable
@@ -39,7 +39,7 @@ const UpgradePlugin = () => {
       {pluginSelected !== null && (
         <AsyncSelect
           key={pluginSelected.value}
-          className="upgrade-plugin__select"
+          className="upgrade-plugin__select mb-3"
           placeholder="Select the targeted version"
           loadOptions={() => getVersionOptionsFromPackage(pluginSelected.value)}
           isClearable

@@ -10,16 +10,17 @@ const UpgradeReact = () => {
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
   const incompatibleDependencies = useSelector((state) =>
-    packageLockSelectors.selectIncompatibleReactPlugins(state, versionSelected ? versionSelected.value : ''),
+    packageLockSelectors.selectIncompatibleReactPlugins(state, versionSelected ? versionSelected.value.version : ''),
   );
 
   return (
-    <div className="react-update">
+    <div className="upgrade-react">
       <h2 className="lh-1 mb-4 text-center">
         <span className="fw-light">Upgrade</span> <span className="text-primary">React</span>
       </h2>
 
       <AsyncSelect
+        className="mb-3"
         placeholder="Select the targeted React version"
         loadOptions={() => getVersionOptionsFromPackage('react')}
         isClearable

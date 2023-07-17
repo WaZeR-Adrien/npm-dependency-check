@@ -1,5 +1,6 @@
 import { PackageJSON } from 'query-registry';
 import { Table } from 'reactstrap';
+import CompatibilityResult from '@/components/Common/CompatibilityResult.tsx';
 
 interface Props {
   dependencies: PackageJSON[];
@@ -7,7 +8,13 @@ interface Props {
 
 const ListIncompatibleDependencies = ({ dependencies }: Props) => {
   if (!dependencies.length) {
-    return <p>All dependencies are compatible</p>;
+    return (
+      <CompatibilityResult
+        isCompatible
+        compatibleDesc="Compatible with your dependencies"
+        incompatibleDesc="Not compatible with your dependencies"
+      />
+    );
   }
 
   return (
@@ -23,7 +30,7 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
       <tbody>
         {dependencies.map((dep, i) => (
           <tr key={i}>
-            <th scope="row">{i}</th>
+            <th>{i}</th>
             <td>{dep.name}</td>
             <td>{dep.version}</td>
             <td>{dep.peerDependencies?.react}</td>
