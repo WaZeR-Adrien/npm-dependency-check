@@ -2,9 +2,9 @@ import IonIcon from '@reacticons/ionicons';
 
 const Footer = () => (
   <div className="footer bg-primary fw-lighter">
-    <p className="text-light m-0">Developed by Adrien MARTINEAU with ❤ in Nantes (France)</p>
+    <p className="footer__description text-light m-0">Developed by Adrien MARTINEAU with ❤ in Nantes (France)</p>
     <a href="https://github.com/WaZeR-Adrien/react-update" target="_blank">
-      <IonIcon className="text-light footer__icon" name="logo-github" size="large" />
+      <IonIcon className="footer__icon text-light" name="logo-github" size="large" />
     </a>
   </div>
 );

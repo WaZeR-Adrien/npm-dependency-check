@@ -6,11 +6,11 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <Navbar color="primary" className="layout__navbar">
+    <Navbar color="primary" className="header">
       <NavbarBrand className="text-light" role="button" onClick={() => navigate('/')}>
         React <span className="fw-lighter">Update</span>
       </NavbarBrand>
-      <NavbarText className="text-light fw-lighter">v{version}</NavbarText>
+      <NavbarText className="header__version text-light fw-lighter">v{version}</NavbarText>
     </Navbar>
   );
 };
