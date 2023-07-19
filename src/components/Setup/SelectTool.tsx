@@ -16,9 +16,9 @@ const buttons: ILargeBtn[] = [
     path: 'upgrade-plugin',
   },
   {
-    label: 'What is deprecated?',
+    label: 'Coming soon',
     icon: 'ban-outline',
-    path: 'what-is-deprecated',
+    path: '',
     isDisabled: true,
   },
 ];
