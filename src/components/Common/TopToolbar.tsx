@@ -7,7 +7,7 @@ const TopToolbar = () => (
       <Breadcrumbs />
     </span>
     <NavbarText className="top-toolbar__not-stored text-primary fw-lighter fst-italic">
-      No data is stored anywhere
+      Data are stored only in local sessionStorage
     </NavbarText>
   </Navbar>
 );
