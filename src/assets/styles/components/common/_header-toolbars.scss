@@ -1,0 +1,19 @@
+.header {
+  padding: 8px 15%;
+}
+
+.header,
+.top-toolbar {
+  &__version,
+  &__not-stored {
+    font-size: 0.8em;
+  }
+}
+
+.top-toolbar {
+  padding: 0 15%;
+
+  .breadcrumb {
+    margin-bottom: 0;
+  }
+}

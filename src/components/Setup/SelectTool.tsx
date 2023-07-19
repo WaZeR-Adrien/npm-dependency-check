@@ -1,4 +1,4 @@
-import LargeBtn from '@/components/Common/LargeBtn.tsx';
+import LargeBtn from '@/components/Common/LargeBtn';
 import { ILargeBtn } from '@/types/large-btn';
 import { useDispatch } from 'react-redux';
 import { reset as resetPackageLock } from '@/store/slices/package-lock.slice.ts';

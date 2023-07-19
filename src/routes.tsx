@@ -11,6 +11,9 @@ const routes: RouteObject[] = [
     path: '/',
     element: <Root />,
     errorElement: <ErrorBoundary />,
+    handle: {
+      crumb: 'Home',
+    },
     children: [
       {
         path: '',
@@ -23,10 +26,16 @@ const routes: RouteObject[] = [
           {
             path: 'upgrade-react',
             element: <UpgradeReact />,
+            handle: {
+              crumb: 'Upgrade React',
+            },
           },
           {
             path: 'upgrade-plugin',
             element: <UpgradePlugin />,
+            handle: {
+              crumb: 'Upgrade Plugin',
+            },
           },
         ],
       },

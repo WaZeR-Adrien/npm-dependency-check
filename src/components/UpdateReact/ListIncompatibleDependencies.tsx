@@ -1,6 +1,6 @@
 import { PackageJSON } from 'query-registry';
 import { Table } from 'reactstrap';
-import CompatibilityResult from '@/components/Common/CompatibilityResult.tsx';
+import CompatibilityResult from '@/components/Common/CompatibilityResult';
 
 interface Props {
   dependencies: PackageJSON[];

@@ -3,7 +3,7 @@ import { getReactRequirement, isCompatibleWithReactVersion } from '@/utils/packa
 import { useSelector } from 'react-redux';
 import { PackageJSON } from 'query-registry';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors.ts';
-import CompatibilityResult from '@/components/Common/CompatibilityResult.tsx';
+import CompatibilityResult from '@/components/Common/CompatibilityResult';
 
 interface Props {
   plugin: PackageJSON;

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
 import { getVersionOptionsFromPackage } from '@/utils/packages.ts';
-import IsCompatibleWithCurrentReact from '@/components/UpdatePlugin/IsCompatibleWithCurrentReact.tsx';
+import IsCompatibleWithCurrentReact from '@/components/UpdatePlugin/IsCompatibleWithCurrentReact';
 import AsyncSelect from 'react-select/async';
 
 const UpgradePlugin = () => {
