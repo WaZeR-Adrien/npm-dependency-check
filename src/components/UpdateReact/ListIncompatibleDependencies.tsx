@@ -6,6 +6,8 @@ interface Props {
   dependencies: PackageJSON[];
 }
 
+const NPM_PACKAGE_URL = 'https://www.npmjs.com/package';
+
 const ListIncompatibleDependencies = ({ dependencies }: Props) => {
   if (!dependencies.length) {
     return (
@@ -31,7 +33,11 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
         {dependencies.map((dep, i) => (
           <tr key={i}>
             <th>{i}</th>
-            <td>{dep.name}</td>
+            <td>
+              <a href={`${NPM_PACKAGE_URL}/${dep.name}/v/${dep.version}`} target="_blank">
+                {dep.name}
+              </a>
+            </td>
             <td>{dep.version}</td>
             <td>{dep.peerDependencies?.react}</td>
           </tr>
