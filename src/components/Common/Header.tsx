@@ -10,7 +10,7 @@ const Header = () => {
       <NavbarBrand className="text-light" role="button" onClick={() => navigate('/')}>
         React <span className="fw-lighter">Update</span>
       </NavbarBrand>
-      <NavbarText className="header__version text-light fw-lighter">v{version}</NavbarText>
+      <NavbarText className="header__version text-light fw-lighter text-small">v{version}</NavbarText>
     </Navbar>
   );
 };

@@ -18,4 +18,4 @@ export const readJsonFile = (file: Blob): Promise<any> =>
   });
 
 export const isPackageFile = (file: any): file is PackageJSON =>
-  'name' in file && 'version' in file && 'packages' in file && 'lockfileVersion' in file;
+  'name' in file && 'version' in file && 'packages' in file && 'lockfileVersion' in file && file.lockfileVersion > 1;
