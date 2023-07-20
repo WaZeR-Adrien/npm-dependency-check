@@ -22,6 +22,8 @@ First, you must import your package-lock.json (not package.json).
 > **Note**
 > Your package-lock.json is not stored in any database, only in sessionStorage in your browser.
 
+Go here : https://react-update.adrien-martineau.fr
+
 After this, you must select a tool:
 ![Tools](docs/tools.png)
 
