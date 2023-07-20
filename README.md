@@ -17,7 +17,7 @@ This tool allows :
 ## :memo: Usage
 First, you must import your package-lock.json (not package.json).
 > **Warning**
-> Only versions > 1 are allowed (from NPM 7).
+> Only lockfileVersion > 1 are allowed (from NPM 7).
 
 > **Note**
 > Your package-lock.json is not stored in any database, only in sessionStorage in your browser.
