@@ -7,7 +7,7 @@ interface Props {
   store: EnhancedStore;
 }
 
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter(routes, { basename: import.meta.env.VITE_BASE_URL });
 
 const App = ({ store }: Props) => (
   <Provider store={store}>
