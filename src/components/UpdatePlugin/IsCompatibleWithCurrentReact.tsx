@@ -10,7 +10,7 @@ interface Props {
 }
 
 const IsCompatibleWithCurrentReact = memo(({ plugin }: Props) => {
-  const reactVersion = useSelector(packageLockSelectors.selectReactVersion);
+  const reactVersion = useSelector((state) => packageLockSelectors.selectDependencyVersion(state, 'react'));
   const isCompatible = isCompatibleWithReactVersion(plugin, reactVersion || '');
   const requirement = getReactRequirement(plugin);
 

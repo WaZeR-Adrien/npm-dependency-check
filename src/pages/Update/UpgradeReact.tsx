@@ -5,9 +5,13 @@ import ListIncompatibleDependencies from '@/components/UpdateReact/ListIncompati
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
 import { getVersionOptionsFromPackage } from '@/utils/packages.ts';
+import useHighlightCurrentOption from '@/hooks/useHighlightCurrentOption.tsx';
 
 const UpgradeReact = () => {
+  const currentVersion = useSelector((state) => packageLockSelectors.selectDependencyVersion(state, 'react'));
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
+
+  const formatOptions = useHighlightCurrentOption(currentVersion || '');
 
   const incompatibleDependencies = useSelector((state) =>
     packageLockSelectors.selectIncompatibleReactPlugins(state, versionSelected ? versionSelected.value.version : ''),
@@ -23,6 +27,7 @@ const UpgradeReact = () => {
         className="mb-3"
         placeholder="Select the targeted React version"
         loadOptions={() => getVersionOptionsFromPackage('react')}
+        formatOptionLabel={formatOptions}
         isClearable
         isSearchable
         cacheOptions

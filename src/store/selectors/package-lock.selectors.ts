@@ -37,14 +37,19 @@ const selectIncompatibleReactPlugins = createSelector(
     plugins.filter((plugin) => !isCompatibleWithReactVersion(plugin, reactVersionSelected)),
 );
 
-const selectReactVersion = createSelector(selectDependencies, (dependencies) => {
-  const react = dependencies.find((dep) => dep.name === 'react');
-  return react?.version;
-});
+const selectDependencyNameArg = (_: any, dependency: string) => dependency;
+
+const selectDependencyVersion = createSelector(
+  [selectDependencies, selectDependencyNameArg],
+  (dependencies, dependency) => {
+    const react = dependencies.find((dep) => dep.name === dependency);
+    return react?.version;
+  },
+);
 
 export default {
   selectFile,
   selectReactPluginNames,
   selectIncompatibleReactPlugins,
-  selectReactVersion,
+  selectDependencyVersion,
 };

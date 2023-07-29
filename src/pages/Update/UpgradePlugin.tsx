@@ -2,9 +2,8 @@ import Select, { PropsValue } from 'react-select';
 import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
-import { getVersionOptionsFromPackage } from '@/utils/packages.ts';
 import IsCompatibleWithCurrentReact from '@/components/UpdatePlugin/IsCompatibleWithCurrentReact';
-import AsyncSelect from 'react-select/async';
+import SelectPluginVersion from '@/components/UpdatePlugin/SelectPluginVersion.tsx';
 
 const UpgradePlugin = () => {
   const [pluginSelected, setPluginSelected] = useState<PropsValue<any>>(null);
@@ -37,16 +36,10 @@ const UpgradePlugin = () => {
       />
 
       {pluginSelected !== null && (
-        <AsyncSelect
-          key={pluginSelected.value}
-          className="upgrade-plugin__select mb-3"
-          placeholder="Select the targeted version"
-          loadOptions={() => getVersionOptionsFromPackage(pluginSelected.value)}
-          isClearable
-          isSearchable
-          cacheOptions
-          defaultOptions
-          onChange={setVersionSelected}
+        <SelectPluginVersion
+          name={pluginSelected.value}
+          versionSelected={versionSelected}
+          setVersionSelected={setVersionSelected}
         />
       )}
 
