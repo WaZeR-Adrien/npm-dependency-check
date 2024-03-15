@@ -1,7 +1,7 @@
 import LargeBtn from '@/components/Common/LargeBtn';
 import { ILargeBtn } from '@/types/large-btn';
 import { useDispatch } from 'react-redux';
-import { reset as resetPackageLock } from '@/store/slices/package-lock.slice.ts';
+import { resetPackageLock } from '@/store/slices/package-lock.slice.ts';
 import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
 
 const buttons: ILargeBtn[] = [
@@ -27,7 +27,7 @@ const SelectTool = () => {
   const dispatch = useDispatch();
 
   const handleRemovePackageLock = () => {
-    dispatch(resetPackageLock({}));
+    dispatch(resetPackageLock({}) as any);
     sessionStorage.removeItem(SESSION_PACKAGE_KEY);
   };
 

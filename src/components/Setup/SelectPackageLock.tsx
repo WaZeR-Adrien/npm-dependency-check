@@ -1,13 +1,13 @@
 import UploadPackageLock from '@/components/Setup/UploadPackageLock';
 import { useDispatch } from 'react-redux';
-import { PackageLockState, set as setPackageLock } from '@/store/slices/package-lock.slice';
+import { PackageLockState, setPackageLock } from '@/store/slices/package-lock.slice';
 import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
 
 const SelectPackageLock = () => {
   const dispatch = useDispatch();
 
   const handleSetPackageLock = (file: PackageLockState) => {
-    dispatch(setPackageLock(file));
+    dispatch(setPackageLock(file) as any);
     sessionStorage.setItem(SESSION_PACKAGE_KEY, JSON.stringify(file));
   };
 

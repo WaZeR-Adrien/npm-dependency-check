@@ -13,7 +13,7 @@ type State = PackageLockState | null;
 
 const initialState: State = null;
 
-const slice = createSlice<State, SliceCaseReducers<State>>({
+const slice = createSlice<State, SliceCaseReducers<State>, any, any>({
   name: 'packageLock',
   initialState,
   reducers: {
@@ -22,5 +22,5 @@ const slice = createSlice<State, SliceCaseReducers<State>>({
   },
 });
 
-export const { set, reset } = slice.actions;
+export const { set: setPackageLock, reset: resetPackageLock } = slice.actions;
 export default slice.reducer;

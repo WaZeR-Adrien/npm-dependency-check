@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
 import { isPackageFile } from '@/utils/files.ts';
-import { set as setPackageLock } from '@/store/slices/package-lock.slice.ts';
+import { setPackageLock } from '@/store/slices/package-lock.slice.ts';
 
 const Root = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Root = () => {
       const contentFile = JSON.parse(String(sessionPackageLock));
 
       if (isPackageFile(contentFile)) {
-        dispatch(setPackageLock(contentFile));
+        dispatch(setPackageLock(contentFile) as any);
       }
     } catch (e) {
       console.log('Error while retrieving PackageLock in session', e);
