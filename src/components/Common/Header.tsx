@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <Navbar color="primary" className="header">
       <NavbarBrand className="text-light" role="button" onClick={() => navigate('/')}>
-        React <span className="fw-lighter">Update</span>
+        NPM <span className="fw-lighter">Dependency Check</span>
       </NavbarBrand>
       <NavbarText className="header__version text-light fw-lighter text-small">v{version}</NavbarText>
     </Navbar>

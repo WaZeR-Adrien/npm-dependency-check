@@ -1,15 +1,15 @@
 {
-  "name": "react-update",
+  "name": "npm-dependency-check",
   "version": "1.1.0",
   "type": "module",
-  "homepage": "https://wazer-adrien.github.io/react-update",
+  "homepage": "https://wazer-adrien.github.io/npm-dependency-check",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write src",
-    "predeploy": "cross-env VITE_BASE_URL=/react-update npm run build",
+    "predeploy": "cross-env VITE_BASE_URL=/npm-dependency-check npm run build",
     "deploy": "gh-pages -d dist"
   },
   "engines": {

@@ -1,4 +1,4 @@
-# React Update
+# NPM Dependency Check
 You use React and want to better manage your version upgrades?
 
 This project is made for you! 😎
@@ -22,7 +22,7 @@ First, you must import your package-lock.json (not package.json).
 > **Note**
 > Your package-lock.json is not stored in any database, only in sessionStorage in your browser.
 
-Go here : https://wazer-adrien.github.io/react-update
+Go here : https://wazer-adrien.github.io/npm-dependency-check
 
 After this, you must select a tool:
 ![Tools](docs/tools.png)
