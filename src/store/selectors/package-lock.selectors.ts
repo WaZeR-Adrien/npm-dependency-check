@@ -4,10 +4,13 @@ import { PackageJSON } from 'query-registry';
 import { PackageLockState } from '@/store/slices/package-lock.slice';
 import { isCompatibleWithReactVersion } from '@/utils/packages.ts';
 
-const selectFile = ({ packageLock }: RootState): PackageLockState => packageLock as any;
+const selectFile = ({ packageLock }: RootState): PackageLockState | null => packageLock;
 
-const selectDependencies = createSelector(selectFile, (packageLock): PackageJSON[] =>
-  (Object.entries(packageLock.packages) as [string, any])
+const selectDependencies = createSelector(selectFile, (packageLock): PackageJSON[] => {
+  if (!packageLock) {
+    return [];
+  }
+  return (Object.entries(packageLock.packages) as [string, any])
     .filter(([key]) => !!key)
     .reduce(
       (acc, [key, value]) => [
@@ -18,8 +21,8 @@ const selectDependencies = createSelector(selectFile, (packageLock): PackageJSON
         },
       ],
       [],
-    ),
-);
+    );
+});
 
 const selectOnlyReactPlugins = createSelector(selectDependencies, (dependencies): PackageJSON[] =>
   dependencies.filter((dep) => dep.peerDependencies && dep.peerDependencies.react),

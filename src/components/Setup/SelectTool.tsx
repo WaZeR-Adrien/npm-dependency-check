@@ -27,7 +27,7 @@ const SelectTool = () => {
   const dispatch = useDispatch();
 
   const handleRemovePackageLock = () => {
-    dispatch(resetPackageLock({}) as any);
+    dispatch(resetPackageLock());
     sessionStorage.removeItem(SESSION_PACKAGE_KEY);
   };
 

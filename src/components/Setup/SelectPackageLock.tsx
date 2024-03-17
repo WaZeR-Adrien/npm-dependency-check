@@ -7,7 +7,7 @@ const SelectPackageLock = () => {
   const dispatch = useDispatch();
 
   const handleSetPackageLock = (file: PackageLockState) => {
-    dispatch(setPackageLock(file) as any);
+    dispatch(setPackageLock(file));
     sessionStorage.setItem(SESSION_PACKAGE_KEY, JSON.stringify(file));
   };
 

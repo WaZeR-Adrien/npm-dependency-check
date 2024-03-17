@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import Header from '@/components/Common/Header';
 import Footer from '@/components/Common/Footer';
 import TopToolbar from '@/components/Common/TopToolbar';
-import { useDispatch } from 'react-redux';
-import { useMemo } from 'react';
 import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
 import { isPackageFile } from '@/utils/files.ts';
 import { setPackageLock } from '@/store/slices/package-lock.slice.ts';
@@ -11,17 +11,21 @@ import { setPackageLock } from '@/store/slices/package-lock.slice.ts';
 const Root = () => {
   const dispatch = useDispatch();
 
-  useMemo(() => {
+  useEffect(() => {
     const sessionPackageLock = sessionStorage.getItem(SESSION_PACKAGE_KEY);
+
+    if (!sessionPackageLock) {
+      return;
+    }
 
     try {
       const contentFile = JSON.parse(String(sessionPackageLock));
 
       if (isPackageFile(contentFile)) {
-        dispatch(setPackageLock(contentFile) as any);
+        dispatch(setPackageLock(contentFile));
       }
     } catch (e) {
-      console.log('Error while retrieving PackageLock in session', e);
+      console.error('Error while retrieving PackageLock in session', e);
     }
   }, [dispatch]);
 

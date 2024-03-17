@@ -1,4 +1,4 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { PackageJSON } from 'query-registry';
 
 export interface PackageLockState {
@@ -13,9 +13,9 @@ type State = PackageLockState | null;
 
 const initialState: State = null;
 
-const slice = createSlice<State, SliceCaseReducers<State>, any, any>({
+const slice = createSlice({
   name: 'packageLock',
-  initialState,
+  initialState: initialState as State,
   reducers: {
     set: (_, { payload }) => payload,
     reset: () => initialState,
