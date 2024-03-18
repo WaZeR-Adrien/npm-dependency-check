@@ -2,7 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { PackageJSON } from 'query-registry';
 import { PackageLockState } from '@/store/slices/package-lock.slice';
-import { isCompatibleWithReactVersion } from '@/utils/packages.ts';
+import { isCompatibleWithReactVersion } from '@/utils/packages';
+import mainDependencySelectors from '@/store/selectors/main-dependency.selectors';
 
 const selectFile = ({ packageLock }: RootState): PackageLockState | null => packageLock;
 
@@ -10,32 +11,36 @@ const selectDependencies = createSelector(selectFile, (packageLock): PackageJSON
   if (!packageLock) {
     return [];
   }
-  return (Object.entries(packageLock.packages) as [string, any])
+  const myPackage = packageLock.packages[''];
+  const myDependencyNames = [
+    ...Object.keys(myPackage.dependencies || {}),
+    ...Object.keys(myPackage.devDependencies || {}),
+  ];
+
+  return (Object.entries(packageLock.packages) as [string, PackageJSON][])
     .filter(([key]) => !!key)
-    .reduce(
-      (acc, [key, value]) => [
-        ...acc,
-        {
-          ...value,
-          name: key.replace('node_modules/', ''),
-        },
-      ],
-      [],
-    );
+    .map(([key, value]) => ({
+      ...value,
+      name: key.replace('node_modules/', ''),
+    }))
+    .filter(({ name }) => myDependencyNames.includes(name));
 });
 
-const selectOnlyReactPlugins = createSelector(selectDependencies, (dependencies): PackageJSON[] =>
-  dependencies.filter((dep) => dep.peerDependencies && dep.peerDependencies.react),
+const selectOnlyPlugins = createSelector(
+  [selectDependencies, mainDependencySelectors.selectDependency],
+  (dependencies, mainDep): PackageJSON[] =>
+    dependencies.filter((dep) => dep.peerDependencies && dep.peerDependencies[mainDep || '']),
 );
 
-const selectReactPluginNames = createSelector(selectOnlyReactPlugins, (plugins): string[] =>
+// prettier-ignore
+const selectPluginNames = createSelector(selectOnlyPlugins, (plugins): string[] =>
   plugins.map((dep) => dep.name),
 );
 
 const selectReactVersionSelectedArg = (_: any, reactVersionSelected: string) => reactVersionSelected;
 
-const selectIncompatibleReactPlugins = createSelector(
-  [selectOnlyReactPlugins, selectReactVersionSelectedArg],
+const selectIncompatiblePlugins = createSelector(
+  [selectOnlyPlugins, selectReactVersionSelectedArg],
   (plugins, reactVersionSelected): PackageJSON[] =>
     plugins.filter((plugin) => !isCompatibleWithReactVersion(plugin, reactVersionSelected)),
 );
@@ -45,14 +50,15 @@ const selectDependencyNameArg = (_: any, dependency: string) => dependency;
 const selectDependencyVersion = createSelector(
   [selectDependencies, selectDependencyNameArg],
   (dependencies, dependency) => {
-    const react = dependencies.find((dep) => dep.name === dependency);
-    return react?.version;
+    const plugin = dependencies.find((dep) => dep.name === dependency);
+    return plugin?.version;
   },
 );
 
 export default {
   selectFile,
-  selectReactPluginNames,
-  selectIncompatibleReactPlugins,
+  selectDependencies,
+  selectPluginNames,
+  selectIncompatiblePlugins,
   selectDependencyVersion,
 };

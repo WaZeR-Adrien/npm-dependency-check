@@ -1,4 +1,4 @@
-import { ILargeBtn } from '@/types/large-btn.ts';
+import { ILargeBtn } from '@/types/large-btn';
 import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import IonIcon from '@reacticons/ionicons';

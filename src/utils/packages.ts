@@ -1,4 +1,4 @@
-import packageService from '@/services/package.service.ts';
+import packageService from '@/services/package.service';
 import { coerce, compareBuild, prerelease, satisfies } from 'semver';
 import { PackageJSON } from 'query-registry';
 

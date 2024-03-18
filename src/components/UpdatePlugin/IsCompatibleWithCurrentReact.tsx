@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { getReactRequirement, isCompatibleWithReactVersion } from '@/utils/packages.ts';
+import { getReactRequirement, isCompatibleWithReactVersion } from '@/utils/packages';
 import { useSelector } from 'react-redux';
 import { PackageJSON } from 'query-registry';
-import packageLockSelectors from '@/store/selectors/package-lock.selectors.ts';
+import packageLockSelectors from '@/store/selectors/package-lock.selectors';
 import CompatibilityResult from '@/components/Common/CompatibilityResult';
 
 interface Props {

@@ -1,10 +1,10 @@
-import AsyncSelect from 'react-select/async';
-import { getVersionOptionsFromPackage } from '@/utils/packages.ts';
 import { Dispatch } from 'react';
 import { useSelector } from 'react-redux';
-import packageLockSelectors from '@/store/selectors/package-lock.selectors.ts';
-import useHighlightCurrentOption from '@/hooks/useHighlightCurrentOption.tsx';
 import { PropsValue } from 'react-select';
+import AsyncSelect from 'react-select/async';
+import { getVersionOptionsFromPackage } from '@/utils/packages';
+import packageLockSelectors from '@/store/selectors/package-lock.selectors';
+import useHighlightCurrentOption from '@/hooks/useHighlightCurrentOption';
 
 interface Props {
   name: string;
@@ -20,7 +20,7 @@ const SelectPluginVersion = ({ name, versionSelected, setVersionSelected }: Prop
     <AsyncSelect
       key={name}
       className="upgrade-plugin__select mb-3"
-      placeholder="Select the targeted version"
+      placeholder="Select the target version"
       value={versionSelected}
       loadOptions={() => getVersionOptionsFromPackage(name)}
       formatOptionLabel={formatOptions}

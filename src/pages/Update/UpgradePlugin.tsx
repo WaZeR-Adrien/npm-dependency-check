@@ -1,19 +1,16 @@
-import Select, { PropsValue } from 'react-select';
-import { useMemo, useState } from 'react';
+import { PropsValue } from 'react-select';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
 import IsCompatibleWithCurrentReact from '@/components/UpdatePlugin/IsCompatibleWithCurrentReact';
-import SelectPluginVersion from '@/components/UpdatePlugin/SelectPluginVersion.tsx';
+import SelectPluginVersion from '@/components/UpdatePlugin/SelectPluginVersion';
+import SelectDependency from '@/components/Common/SelectDependency';
 
 const UpgradePlugin = () => {
   const [pluginSelected, setPluginSelected] = useState<PropsValue<any>>(null);
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
-  const dependencyNames = useSelector(packageLockSelectors.selectReactPluginNames);
-  const pluginOptions: PropsValue<any> = useMemo(
-    () => dependencyNames.map((name) => ({ label: name, value: name })),
-    [dependencyNames],
-  );
+  const dependencyNames = useSelector(packageLockSelectors.selectPluginNames);
 
   const handlePluginChange = (option: PropsValue<any>) => {
     setPluginSelected(option);
@@ -26,14 +23,7 @@ const UpgradePlugin = () => {
         <span className="fw-light">Upgrade React's</span> <span className="text-primary">plugin</span>
       </h2>
 
-      <Select
-        className="upgrade-plugin__select mb-3"
-        placeholder="Select the targeted plugin"
-        options={pluginOptions}
-        isClearable
-        isSearchable
-        onChange={handlePluginChange}
-      />
+      <SelectDependency dependencyNames={dependencyNames} handleChange={handlePluginChange} />
 
       {pluginSelected !== null && (
         <SelectPluginVersion

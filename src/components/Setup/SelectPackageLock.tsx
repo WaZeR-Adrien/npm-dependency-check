@@ -1,7 +1,7 @@
 import UploadPackageLock from '@/components/Setup/UploadPackageLock';
 import { useDispatch } from 'react-redux';
 import { PackageLockState, setPackageLock } from '@/store/slices/package-lock.slice';
-import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
+import { SESSION_PACKAGE_KEY } from '@/utils/constants';
 
 const SelectPackageLock = () => {
   const dispatch = useDispatch();

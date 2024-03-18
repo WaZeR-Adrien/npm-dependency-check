@@ -1,14 +1,14 @@
 import LargeBtn from '@/components/Common/LargeBtn';
 import { ILargeBtn } from '@/types/large-btn';
 import { useDispatch } from 'react-redux';
-import { resetPackageLock } from '@/store/slices/package-lock.slice.ts';
-import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
+import { resetPackageLock } from '@/store/slices/package-lock.slice';
+import { SESSION_PACKAGE_KEY } from '@/utils/constants';
 
 const buttons: ILargeBtn[] = [
   {
-    label: 'Upgrade React',
+    label: 'Upgrade Main Dependency',
     icon: 'logo-react',
-    path: 'upgrade-react',
+    path: 'upgrade-main-dep',
   },
   {
     label: 'Upgrade Dependency',
@@ -35,8 +35,14 @@ const SelectTool = () => {
     <div className="select-tool">
       <p>Select the tool</p>
       <div className="select-tool__btns d-flex gap-3">
-        {buttons.map((btn, i) => (
-          <LargeBtn key={i} label={btn.label} icon={btn.icon} path={btn.path} isDisabled={btn.isDisabled as boolean} />
+        {buttons.map((btn) => (
+          <LargeBtn
+            key={btn.path}
+            label={btn.label}
+            icon={btn.icon}
+            path={btn.path}
+            isDisabled={btn.isDisabled as boolean}
+          />
         ))}
       </div>
       <p className="select-tool__restart fst-italic text-danger" role="button" onClick={handleRemovePackageLock}>

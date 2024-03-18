@@ -4,9 +4,9 @@ import { Outlet } from 'react-router-dom';
 import Header from '@/components/Common/Header';
 import Footer from '@/components/Common/Footer';
 import TopToolbar from '@/components/Common/TopToolbar';
-import { SESSION_PACKAGE_KEY } from '@/utils/constants.ts';
-import { isPackageFile } from '@/utils/files.ts';
-import { setPackageLock } from '@/store/slices/package-lock.slice.ts';
+import { SESSION_PACKAGE_KEY } from '@/utils/constants';
+import { isPackageFile } from '@/utils/files';
+import { setPackageLock } from '@/store/slices/package-lock.slice';
 
 const Root = () => {
   const dispatch = useDispatch();
