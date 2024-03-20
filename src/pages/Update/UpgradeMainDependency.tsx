@@ -10,9 +10,7 @@ import mainDependencySelectors from '@/store/selectors/main-dependency.selectors
 
 const UpgradeMainDependency = () => {
   const mainDependency = useSelector(mainDependencySelectors.selectDependency);
-  const currentVersion = useSelector((state) =>
-    packageLockSelectors.selectDependencyVersion(state, mainDependency || ''),
-  );
+  const currentVersion = useSelector((state) => packageLockSelectors.selectDependencyVersion(state, mainDependency));
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
   const formatOptions = useHighlightCurrentOption(currentVersion || '');
@@ -30,7 +28,7 @@ const UpgradeMainDependency = () => {
       <AsyncSelect
         className="mb-3"
         placeholder="Select the target version"
-        loadOptions={() => getVersionOptionsFromPackage(mainDependency || '')}
+        loadOptions={() => getVersionOptionsFromPackage(mainDependency)}
         formatOptionLabel={formatOptions}
         isClearable
         isSearchable

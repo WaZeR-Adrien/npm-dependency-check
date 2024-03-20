@@ -7,7 +7,7 @@ import mainDependencySelectors from '@/store/selectors/main-dependency.selectors
 
 const Setup = () => {
   const packageFile = useSelector(packageFileSelectors.selectFile);
-  const mainDependency = useSelector(mainDependencySelectors.selectDependency);
+  const isMainDepSelected = useSelector(mainDependencySelectors.isSelected);
 
   return (
     <div className="setup text-center">
@@ -17,7 +17,7 @@ const Setup = () => {
       </h2>
       {!packageFile && <SelectPackageLock />}
       {packageFile && <SelectMainDependency />}
-      {mainDependency && <SelectTool />}
+      {isMainDepSelected && <SelectTool />}
     </div>
   );
 };

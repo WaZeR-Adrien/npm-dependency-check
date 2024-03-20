@@ -1,7 +1,9 @@
 import { RootState } from '@/store/store';
 
-const selectDependency = ({ mainDependency }: RootState): string | null => mainDependency;
+const isSelected = ({ mainDependency }: RootState): boolean => !!mainDependency;
+const selectDependency = ({ mainDependency }: RootState): string => mainDependency || '';
 
 export default {
+  isSelected,
   selectDependency,
 };
