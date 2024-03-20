@@ -1,0 +1,27 @@
+.header {
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        width: 700px;
+        height: 400px;
+        background-image: url('/header-background.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &__left {
+        margin-top: 30px;
+        margin-left: 130px;
+
+        &__brand-name {
+            font-size: 20px;
+        }
+        &__subtitle {
+            font-size: 14px;
+            letter-spacing: 1.1px;
+        }
+    }
+}

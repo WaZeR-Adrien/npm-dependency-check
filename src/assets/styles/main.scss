@@ -1,3 +1,7 @@
 @import 'theme/theme';
 @import 'components/components';
 @import 'utils/utils';
+
+body {
+    @include inter-family;
+}
