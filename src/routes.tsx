@@ -1,11 +1,11 @@
 import { RouteObject } from 'react-router-dom';
 import Root from '@/pages/Layout/Root';
 import ErrorBoundary from '@/pages/Layout/ErrorBoundary';
-import UpgradeMainDependency from '@/pages/Update/UpgradeMainDependency';
-import UpgradePlugin from '@/pages/Update/UpgradePlugin';
-import Setup from '@/pages/Setup/Setup';
+import UpgradeMainDependencyPage from '@/pages/Update/UpgradeMainDependencyPage';
+import UpgradePluginPage from '@/pages/Update/UpgradePluginPage';
+import SetupPage from '@/pages/Setup/SetupPage';
 import PackageLockGuard from '@/pages/Layout/PackageLockGuard';
-import Tools from '@/pages/Setup/Tools';
+import Tools from '@/pages/Setup/ToolsPage';
 import MainDependencyGuard from '@/pages/Layout/MainDependencyGuard';
 
 const routes: RouteObject[] = [
@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
     children: [
       {
         path: '',
-        element: <Setup />,
+        element: <SetupPage />,
       },
       {
         path: '',
@@ -38,14 +38,14 @@ const routes: RouteObject[] = [
             children: [
               {
                 path: 'upgrade-main-dep',
-                element: <UpgradeMainDependency />,
+                element: <UpgradeMainDependencyPage />,
                 handle: {
                   crumb: 'Upgrade Main Dependency',
                 },
               },
               {
                 path: 'upgrade-plugin',
-                element: <UpgradePlugin />,
+                element: <UpgradePluginPage />,
                 handle: {
                   crumb: 'Upgrade Plugin',
                 },

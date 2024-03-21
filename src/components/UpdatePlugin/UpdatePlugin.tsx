@@ -6,7 +6,7 @@ import { PropsValue } from 'react-select';
 import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
 
-const CheckDepCompatibilityWithMainDep = () => {
+const UpdatePlugin = () => {
   const [pluginSelected, setPluginSelected] = useState<PropsValue<any>>(null);
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
@@ -36,4 +36,4 @@ const CheckDepCompatibilityWithMainDep = () => {
   );
 };
 
-export default CheckDepCompatibilityWithMainDep;
+export default UpdatePlugin;

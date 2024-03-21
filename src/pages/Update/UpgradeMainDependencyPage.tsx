@@ -2,10 +2,9 @@ import { useSelector } from 'react-redux';
 import mainDependencySelectors from '@/store/selectors/main-dependency.selectors';
 import Section from '@/components/Common/Section';
 import SelectMainDependency from '@/components/Setup/SelectMainDependency';
-import SelectVersionAndShowMainDepIncompatibility
-  from '@/components/UpdateMainDep/SelectVersionAndShowMainDepIncompatibility';
+import UpdateMainDep from '@/components/UpdateMainDep/UpdateMainDep';
 
-const UpgradeMainDependency = () => {
+const UpgradeMainDependencyPage = () => {
   const mainDependency = useSelector(mainDependencySelectors.selectDependency);
 
   return (
@@ -27,10 +26,10 @@ const UpgradeMainDependency = () => {
             <SelectMainDependency />
           </>
         }>
-        <SelectVersionAndShowMainDepIncompatibility mainDependency={mainDependency} />
+        <UpdateMainDep mainDependency={mainDependency} />
       </Section>
     </div>
   );
 };
 
-export default UpgradeMainDependency;
+export default UpgradeMainDependencyPage;

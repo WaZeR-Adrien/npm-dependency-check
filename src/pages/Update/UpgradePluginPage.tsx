@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
 import Section from '@/components/Common/Section';
 import SelectMainDependency from '@/components/Setup/SelectMainDependency';
-import CheckDepCompatibilityWithMainDep from '@/components/UpdatePlugin/CheckDepCompatibilityWithMainDep';
+import UpdatePlugin from '@/components/UpdatePlugin/UpdatePlugin';
 import mainDependencySelectors from '@/store/selectors/main-dependency.selectors';
 
-const UpgradePlugin = () => {
+const UpgradePluginPage = () => {
   const mainDependency = useSelector(mainDependencySelectors.selectDependency);
 
   return (
@@ -30,10 +30,10 @@ const UpgradePlugin = () => {
             <SelectMainDependency />
           </>
         }>
-        <CheckDepCompatibilityWithMainDep />
+        <UpdatePlugin />
       </Section>
     </div>
   );
 };
 
-export default UpgradePlugin;
+export default UpgradePluginPage;

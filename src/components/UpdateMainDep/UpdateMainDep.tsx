@@ -11,7 +11,7 @@ interface Props {
   mainDependency: string;
 }
 
-const SelectVersionAndShowMainDepIncompatibility = memo(({ mainDependency }: Props) => {
+const UpdateMainDep = memo(({ mainDependency }: Props) => {
   const currentVersion = useSelector((state) => packageLockSelectors.selectDependencyVersion(state, mainDependency));
   const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
 
@@ -41,4 +41,4 @@ const SelectVersionAndShowMainDepIncompatibility = memo(({ mainDependency }: Pro
   );
 });
 
-export default SelectVersionAndShowMainDepIncompatibility;
+export default UpdateMainDep;

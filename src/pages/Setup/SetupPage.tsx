@@ -3,7 +3,7 @@ import SelectPackageLock from '@/components/Setup/SelectPackageLock';
 import Button from '@/components/Common/Button';
 import { GITHUB_URL } from '@/utils/constants';
 
-const Setup = () => {
+const SetupPage = () => {
   const openGitHub = () => {
     window.open(GITHUB_URL, '_blank');
   };
@@ -35,4 +35,4 @@ const Setup = () => {
   );
 };
 
-export default Setup;
+export default SetupPage;
