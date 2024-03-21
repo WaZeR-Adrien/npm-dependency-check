@@ -1,8 +1,13 @@
 import Section from '@/components/Common/Section';
 import SelectPackageLock from '@/components/Setup/SelectPackageLock';
 import Button from '@/components/Common/Button';
+import { GITHUB_URL } from '@/utils/constants';
 
 const Setup = () => {
+  const openGitHub = () => {
+    window.open(GITHUB_URL, '_blank');
+  };
+
   return (
     <div className="setup">
       <Section
@@ -21,7 +26,7 @@ const Setup = () => {
               And easily analyse your dependencies
             </p>
             <p className="fst-italic mb-4">Data are only stored in sessionStorage</p>
-            <Button label="More information on GitHub" icon="logo-github" />
+            <Button label="More information on GitHub" icon="logo-github" handleClick={openGitHub} />
           </>
         }>
         <SelectPackageLock />
