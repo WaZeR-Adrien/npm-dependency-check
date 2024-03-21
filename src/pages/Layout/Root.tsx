@@ -30,7 +30,7 @@ const Root = () => {
   return (
     <div className="layout">
       <Header />
-      <div className="layout__outlet d-flex justify-content-center mt-5 mb-5">
+      <div className="layout__outlet">
         <Outlet />
       </div>
     </div>

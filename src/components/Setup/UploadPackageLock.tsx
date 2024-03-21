@@ -43,13 +43,18 @@ const UploadPackageLock = ({ setPackageFile }: Props) => {
   };
 
   return (
-    <div className={`large-btn m-auto ${isError ? 'large-btn--error' : ''}`} role="button" onClick={handleClick}>
-      <IonIcon className="large-btn__icon text-primary" name="cloud-upload-outline" size="large" />
-      <p className="large-btn__title h4">Import</p>
-      {filename && <p className="large-btn__subtitle fst-italic mb-0">{filename}</p>}
+    <>
+      <div
+        className={`upload-package-lock m-auto ${isError ? 'upload-package-lock--error' : ''}`}
+        role="button"
+        onClick={handleClick}>
+        <IonIcon className="upload-package-lock__icon text-primary" name="cloud-upload-outline" size="large" />
+        <p className="upload-package-lock__title h4 fw-normal">UPLOAD</p>
+        {filename && <p className="upload-package-lock__subtitle fst-italic mb-0">{filename}</p>}
 
-      <input ref={inputRef} className="d-none" type="file" accept=".json,application/json" onChange={handleChange} />
-    </div>
+        <input ref={inputRef} className="d-none" type="file" accept=".json,application/json" onChange={handleChange} />
+      </div>
+    </>
   );
 };
 

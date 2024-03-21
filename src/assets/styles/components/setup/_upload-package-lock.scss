@@ -1,12 +1,12 @@
-.large-btn {
+.upload-package-lock {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  height: 150px;
-  width: 200px;
-  border-radius: 10px;
+  height: 225px;
+  width: 275px;
+  border-radius: 20px;
   border: 5px solid rgba($primary, 0.45);
   transition: all 0.4s;
 
@@ -20,17 +20,8 @@
     transition: all 0.4s;
   }
 
-  &--disabled {
-    border-color: $secondary;
-
-    &:hover {
-      background: rgba($secondary, 0.05);
-      cursor: not-allowed;
-    }
-  }
-
   &__icon {
-    font-size: 1.5em;
+    font-size: 3em;
   }
 
   &__title {
