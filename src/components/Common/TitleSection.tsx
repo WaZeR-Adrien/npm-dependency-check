@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 interface Props {
   title: string | ReactNode;
-  subtitle: string;
+  subtitle: string | ReactNode;
 }
 
 const TitleSection = ({ title, subtitle }: Props) => {

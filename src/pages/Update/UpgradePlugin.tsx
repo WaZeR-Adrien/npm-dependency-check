@@ -1,41 +1,37 @@
-import { PropsValue } from 'react-select';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import packageLockSelectors from '@/store/selectors/package-lock.selectors';
-import IsCompatibleWithCurrentReact from '@/components/UpdatePlugin/IsCompatibleWithCurrentReact';
-import SelectPluginVersion from '@/components/UpdatePlugin/SelectPluginVersion';
-import SelectDependency from '@/components/Common/SelectDependency';
+import Section from '@/components/Common/Section';
+import SelectMainDependency from '@/components/Setup/SelectMainDependency';
+import CheckDepCompatibilityWithMainDep from '@/components/UpdatePlugin/CheckDepCompatibilityWithMainDep';
+import mainDependencySelectors from '@/store/selectors/main-dependency.selectors';
 
 const UpgradePlugin = () => {
-  const [pluginSelected, setPluginSelected] = useState<PropsValue<any>>(null);
-  const [versionSelected, setVersionSelected] = useState<PropsValue<any>>(null);
-
-  const dependencyNames = useSelector(packageLockSelectors.selectPluginNames);
-
-  const handlePluginChange = (option: PropsValue<any>) => {
-    setPluginSelected(option);
-    setVersionSelected(null);
-  };
+  const mainDependency = useSelector(mainDependencySelectors.selectDependency);
 
   return (
     <div className="upgrade-plugin">
-      <h2 className="lh-1 mb-4 text-center">
-        <span className="fw-light">Upgrade React's</span> <span className="text-primary">plugin</span>
-      </h2>
-
-      <SelectDependency dependencyNames={dependencyNames} handleChange={handlePluginChange} />
-
-      {pluginSelected !== null && (
-        <SelectPluginVersion
-          name={pluginSelected.value}
-          versionSelected={versionSelected}
-          setVersionSelected={setVersionSelected}
-        />
-      )}
-
-      {pluginSelected !== null && versionSelected !== null && (
-        <IsCompatibleWithCurrentReact plugin={versionSelected.value} />
-      )}
+      <Section
+        subtitle={
+          <>
+            SELECT <span className="fw-medium text-uppercase">{mainDependency}</span>’S PLUGIN TO HELP
+          </>
+        }
+        title={
+          <>
+            <span className="fw-medium">PLUGIN</span> <span className="fw-light">UPGRADE</span>
+          </>
+        }
+        description={
+          <>
+            <p>
+              You will see if the plugin’s version is compatible with your{' '}
+              <span className="fw-medium">{mainDependency}</span>’s version.
+            </p>
+            <p>You can select your main dependency here:</p>
+            <SelectMainDependency />
+          </>
+        }>
+        <CheckDepCompatibilityWithMainDep />
+      </Section>
     </div>
   );
 };

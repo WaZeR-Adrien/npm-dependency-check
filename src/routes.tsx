@@ -5,6 +5,8 @@ import UpgradeMainDependency from '@/pages/Update/UpgradeMainDependency';
 import UpgradePlugin from '@/pages/Update/UpgradePlugin';
 import Setup from '@/pages/Setup/Setup';
 import PackageLockGuard from '@/pages/Layout/PackageLockGuard';
+import Tools from '@/pages/Setup/Tools';
+import MainDependencyGuard from '@/pages/Layout/MainDependencyGuard';
 
 const routes: RouteObject[] = [
   {
@@ -24,18 +26,31 @@ const routes: RouteObject[] = [
         element: <PackageLockGuard />,
         children: [
           {
-            path: 'upgrade-main-dep',
-            element: <UpgradeMainDependency />,
+            path: 'tools',
+            element: <Tools />,
             handle: {
               crumb: 'Upgrade Main Dependency',
             },
           },
           {
-            path: 'upgrade-plugin',
-            element: <UpgradePlugin />,
-            handle: {
-              crumb: 'Upgrade Plugin',
-            },
+            path: 'tools',
+            element: <MainDependencyGuard />,
+            children: [
+              {
+                path: 'upgrade-main-dep',
+                element: <UpgradeMainDependency />,
+                handle: {
+                  crumb: 'Upgrade Main Dependency',
+                },
+              },
+              {
+                path: 'upgrade-plugin',
+                element: <UpgradePlugin />,
+                handle: {
+                  crumb: 'Upgrade Plugin',
+                },
+              },
+            ],
           },
         ],
       },

@@ -1,23 +1,26 @@
-import { useSelector } from 'react-redux';
-import packageFileSelectors from '@/store/selectors/package-lock.selectors';
-import SelectPackageLock from '@/components/Setup/SelectPackageLock';
-import SelectTool from '@/components/Setup/SelectTool';
+import Section from '@/components/Common/Section';
 import SelectMainDependency from '@/components/Setup/SelectMainDependency';
-import mainDependencySelectors from '@/store/selectors/main-dependency.selectors';
+import SelectTool from '@/components/Setup/SelectTool';
 
 const Setup = () => {
-  const packageFile = useSelector(packageFileSelectors.selectFile);
-  const isMainDepSelected = useSelector(mainDependencySelectors.isSelected);
-
   return (
-    <div className="setup text-center">
-      <h1 className="fw-light lh-1">Welcome</h1>
-      <h2 className="lh-1 mb-4">
-        <span className="fw-light">to</span> <span className="text-primary">NPM Dependency Check</span>
-      </h2>
-      {!packageFile && <SelectPackageLock />}
-      {packageFile && <SelectMainDependency />}
-      {isMainDepSelected && <SelectTool />}
+    <div className="tools">
+      <Section
+        subtitle="SELECT MAIN DEPENDENCY"
+        title={
+          <>
+            <span className="fw-light">AND/OR</span> <span className="fw-medium">TOOL</span>
+          </>
+        }
+        description={
+          <>
+            <p>Some tools require selecting a main dependency.</p>
+            <p>You can select your main dependency here:</p>
+            <SelectMainDependency />
+          </>
+        }>
+        <SelectTool />
+      </Section>
     </div>
   );
 };

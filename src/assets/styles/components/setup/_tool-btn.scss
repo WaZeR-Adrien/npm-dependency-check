@@ -1,0 +1,20 @@
+.tool-btn {
+    border-radius: 10px;
+    padding: 20px;
+    overflow: hidden;
+    height: 175px;
+    width: 175px;
+
+    &:not(&--disabled):hover {
+        box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+    }
+
+    &--disabled {
+        background: $background !important;
+        cursor: not-allowed;
+    }
+
+    &__icon {
+        font-size: 2em;
+    }
+}

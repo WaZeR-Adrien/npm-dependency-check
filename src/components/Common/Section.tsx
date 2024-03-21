@@ -3,7 +3,7 @@ import TitleSection from '@/components/Common/TitleSection';
 
 interface Props {
   title: string | ReactNode;
-  subtitle: string;
+  subtitle: string | ReactNode;
   description: ReactNode;
   children: ReactNode;
 }

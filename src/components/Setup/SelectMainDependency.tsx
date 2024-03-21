@@ -13,8 +13,6 @@ const SelectMainDependency = () => {
 
   return (
     <div className="select-package">
-      <p className="select-package__title mb-0">Select your package-lock.json</p>
-      <p className="select-package__version fst-italic text-small text-primary">lockfileVersion {'>'} 1 / from NPM 7</p>
       <SelectDependency
         dependencyNames={dependencies.map((dep) => dep.name)}
         handleChange={handleSelectMainDependency}
