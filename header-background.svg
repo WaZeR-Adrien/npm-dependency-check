@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0f5d7a;
+        fill-rule: evenodd;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="-192" y="-407" width="2016.03" height="1863" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#5f1a37"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Plan_de_travail_1" data-name="Plan de travail 1">
+    <path id="Forme_1" data-name="Forme 1" class="cls-1" d="M41.955,1456S-413.172,607.02,961.79,318.072C1974.74,105.2,1810.06-316.009,1819.14-326.945S429.942-407,429.942-407L-192-397.851Z"/>
+  </g>
+</svg>
