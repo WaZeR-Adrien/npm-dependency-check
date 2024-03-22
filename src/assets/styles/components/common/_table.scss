@@ -1,0 +1,21 @@
+.table {
+    &> :not(caption) > * > * {
+        background: $background;
+    }
+
+    &.table-striped > tbody > tr:nth-of-type(odd) > * {
+        background: #fff;
+    }
+
+    td {
+        font-weight: 400;
+    }
+
+    th {
+        font-weight: 500;
+    }
+
+    td, th {
+        padding: 6px 15px;
+    }
+}

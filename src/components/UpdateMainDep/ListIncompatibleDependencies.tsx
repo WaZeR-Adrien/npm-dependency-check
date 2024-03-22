@@ -26,7 +26,7 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
           <th>#</th>
           <th>Dependency/Plugin</th>
           <th>Version</th>
-          <th>React requirement</th>
+          <th>Requirement</th>
         </tr>
       </thead>
       <tbody>
