@@ -1,10 +1,10 @@
+import { useSelector } from 'react-redux';
+import { memo, useState } from 'react';
+import { PropsValue } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import { getVersionOptionsFromPackage } from '@/utils/packages';
 import ListIncompatibleDependencies from '@/components/UpdateMainDep/ListIncompatibleDependencies';
-import { useSelector } from 'react-redux';
 import packageLockSelectors from '@/store/selectors/package-lock.selectors';
-import { memo, useState } from 'react';
-import { PropsValue } from 'react-select';
 import useHighlightCurrentOption from '@/hooks/useHighlightCurrentOption';
 
 interface Props {
@@ -36,7 +36,9 @@ const UpdateMainDep = memo(({ mainDependency }: Props) => {
         onChange={setVersionSelected}
       />
 
-      {versionSelected !== null && <ListIncompatibleDependencies dependencies={incompatibleDependencies} />}
+      {versionSelected !== null && (
+        <ListIncompatibleDependencies mainDependency={mainDependency} dependencies={incompatibleDependencies} />
+      )}
     </>
   );
 });

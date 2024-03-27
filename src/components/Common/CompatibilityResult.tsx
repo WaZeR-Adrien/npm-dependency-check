@@ -22,9 +22,14 @@ const CompatibilityResult = ({ isCompatible, compatibleDesc, incompatibleDesc, r
       </>
     )}
     {!!requirement && !!yourVersion && (
-      <p className="compatibility-result__requirement fst-italic">
-        Requirement: {requirement} / Yours: {yourVersion}
-      </p>
+      <>
+        <p className="compatibility-result__requirement fst-italic mb-0">
+          <span className="fw-semibold">Requirement:</span> {requirement}
+        </p>
+        <p className="compatibility-result__requirement fst-italic">
+          <span className="fw-semibold">Yours:</span> {yourVersion}
+        </p>
+      </>
     )}
   </div>
 );

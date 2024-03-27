@@ -10,10 +10,10 @@ export const getVersionOptionsFromPackage = (name: string) =>
       .map((manifest) => ({ label: manifest.version, value: manifest })),
   );
 
-export const getReactRequirement = ({ peerDependencies, dependencies }: PackageJSON) =>
-  (peerDependencies && peerDependencies.react) || (dependencies && dependencies.react);
+export const getMainDependencyRequirement = (mainDep: string, plugin: PackageJSON) =>
+  plugin.peerDependencies?.[mainDep] || plugin.dependencies?.[mainDep] || plugin.engines?.[mainDep];
 
-export const isCompatibleWithReactVersion = (plugin: PackageJSON, reactVersion: string) => {
-  const reactRange = getReactRequirement(plugin) || '';
-  return satisfies(coerce(reactVersion) || '', reactRange, { includePrerelease: true });
+export const isCompatibleWithMainDepVersion = (mainDependency: string, plugin: PackageJSON, version: string) => {
+  const range = getMainDependencyRequirement(mainDependency, plugin) || '';
+  return satisfies(coerce(version) || '', range, { includePrerelease: true });
 };

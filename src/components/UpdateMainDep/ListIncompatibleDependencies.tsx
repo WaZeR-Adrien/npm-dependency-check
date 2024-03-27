@@ -3,12 +3,13 @@ import { Table } from 'reactstrap';
 import CompatibilityResult from '@/components/Common/CompatibilityResult';
 
 interface Props {
+  mainDependency: string;
   dependencies: PackageJSON[];
 }
 
 const NPM_PACKAGE_URL = 'https://www.npmjs.com/package';
 
-const ListIncompatibleDependencies = ({ dependencies }: Props) => {
+const ListIncompatibleDependencies = ({ mainDependency, dependencies }: Props) => {
   if (!dependencies.length) {
     return (
       <CompatibilityResult
@@ -39,7 +40,11 @@ const ListIncompatibleDependencies = ({ dependencies }: Props) => {
               </a>
             </td>
             <td>{dep.version}</td>
-            <td>{dep.peerDependencies?.react}</td>
+            <td>
+              {dep.peerDependencies?.[mainDependency] ||
+                dep.dependencies?.[mainDependency] ||
+                dep.engines?.[mainDependency]}
+            </td>
           </tr>
         ))}
       </tbody>
